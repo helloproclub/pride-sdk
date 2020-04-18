@@ -1,0 +1,21 @@
+{
+  "name": "pride-sdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "test": "jest",
+    "lint": "tslint --project . --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "tsc": "^1.20150623.0",
+    "tslint": "^6.1.1",
+    "typescript": "^3.8.3"
+  }
+}

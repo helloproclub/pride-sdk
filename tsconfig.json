@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "skipLibCheck": true,
+        "target": "es2015",
+        "module": "umd",
+        "sourceMap": true,
+        "outDir": "build"
+    },
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts",
+      "**/*.test.ts"
+  ]
+}
