@@ -18,6 +18,18 @@ class ToDoService {
     async createTodo(title, description): Promise<ToDo> {
         return await this.repository.createToDo({title, description})
     }
+
+    async getListToDo(): Promise<ToDo[]> {
+        return await this.repository.getListToDo()
+    }
+
+    async getByID(id): Promise<ToDo> {
+        return await this.repository.getByID({id})
+    }
+
+    async getListTodoRequest(offset,limit): Promise<ToDo[]> {
+        return await this.repository.getListTodoRequest({offset,limit})
+    }
 }
 
 export {
