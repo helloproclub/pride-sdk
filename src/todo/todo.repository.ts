@@ -84,7 +84,7 @@ class ToDoMockRepository implements ToDoRepository {
     }   
 
     async deleteByID(request: GetByID): Promise<GetByID> {
-        this.db = this.db.filter(data => data.id !== request.id)
+        this.db = this.db.filter(data => data.id != request.id)
         
         const result = new Promise<GetByID>(resolve =>
             resolve({id: request.id})
