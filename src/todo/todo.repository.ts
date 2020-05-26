@@ -8,7 +8,8 @@ interface ToDoRepository {
     getListToDo: () => Promise<ToDo[]>,
     getByID: (request: GetByID) => Promise<ToDo>,
     getListTodoRequest: (request: LimitAndOffset) => Promise<ToDo[]>,
-    updateByID: (request: ToDo) => Promise<ToDo>
+    updateByID: (request: ToDo) => Promise<ToDo>,
+    deleteByID: (request: GetByID) => Promise<GetByID>
 }
 
 class ToDoMockRepository implements ToDoRepository {
@@ -81,6 +82,16 @@ class ToDoMockRepository implements ToDoRepository {
         
         return result
     }   
+
+    async deleteByID(request: GetByID): Promise<GetByID> {
+        this.db = this.db.filter(data => data.id !== request.id)
+        
+        const result = new Promise<GetByID>(resolve =>
+            resolve({id: request.id})
+        );
+
+        return result
+    }
 }
 
 export {

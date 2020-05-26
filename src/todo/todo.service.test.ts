@@ -56,3 +56,12 @@ test("must update data id 3", async () => {
     // then
     expect(updateByID).not.toBeUndefined()
 })
+
+test("must delete first data in db", async () => {
+    // given
+    const id = 0
+    // when
+    const deleteByID = await service.deleteByID(id)
+    // then
+    expect(deleteByID).not.toBeUndefined()
+})

@@ -1,6 +1,6 @@
 import { Config } from '../../types/config'
 
-import { ToDo } from './todo.entity'
+import { ToDo, GetByID } from './todo.entity'
 import { ToDoRepository, ToDoMockRepository } from './todo.repository'
 
 class ToDoService {
@@ -33,6 +33,10 @@ class ToDoService {
 
     async updateByID(id,title,description): Promise<ToDo> {
         return await this.repository.updateByID({id,title,description})
+    }
+
+    async deleteByID(id): Promise<GetByID> {
+        return await this.repository.deleteByID({id})
     }
 }
 
