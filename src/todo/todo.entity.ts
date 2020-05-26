@@ -5,8 +5,8 @@ type CreateToDoRequest  = {
 
 type ToDo = {
     id: string,
-    title?: string,
-    description?: string,
+    title: string,
+    description: string,
 }
 
 type GetByID = {
