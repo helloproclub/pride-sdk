@@ -45,3 +45,14 @@ test("must show data id 5 - 7", async () => {
     // then
     expect(listByRequest).not.toBeUndefined()
 })
+
+test("must update data id 3", async () => {
+    // given
+    const id = 3 
+    const title = "updated title"
+    const description = "updated desc"
+    // when
+    const updateByID = await service.updateByID(id,title,description)
+    // then
+    expect(updateByID).not.toBeUndefined()
+})

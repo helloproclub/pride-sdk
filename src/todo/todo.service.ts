@@ -30,6 +30,10 @@ class ToDoService {
     async getListTodoRequest(offset,limit): Promise<ToDo[]> {
         return await this.repository.getListTodoRequest({offset,limit})
     }
+
+    async updateByID(id,title,description): Promise<ToDo> {
+        return await this.repository.updateByID({id,title,description})
+    }
 }
 
 export {
