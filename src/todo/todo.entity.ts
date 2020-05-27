@@ -9,7 +9,18 @@ type ToDo = {
     description: string,
 }
 
+type GetByID = {
+    id: string
+}
+
+type LimitAndOffset = {
+    offset?: number,
+    limit?: number
+}
+
 export {
     ToDo,
-    CreateToDoRequest
+    CreateToDoRequest,
+    GetByID,
+    LimitAndOffset
 }

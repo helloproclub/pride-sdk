@@ -1,6 +1,6 @@
 import { Config } from '../../types/config'
 
-import { ToDo } from './todo.entity'
+import { ToDo, GetByID } from './todo.entity'
 import { ToDoRepository, ToDoMockRepository } from './todo.repository'
 
 class ToDoService {
@@ -17,6 +17,26 @@ class ToDoService {
 
     async createTodo(title, description): Promise<ToDo> {
         return await this.repository.createToDo({title, description})
+    }
+
+    async getListToDo(): Promise<ToDo[]> {
+        return await this.repository.getListToDo()
+    }
+
+    async getByID(id): Promise<ToDo> {
+        return await this.repository.getByID({id})
+    }
+
+    async getListTodoRequest(offset,limit): Promise<ToDo[]> {
+        return await this.repository.getListTodoRequest({offset,limit})
+    }
+
+    async updateByID(id,title,description): Promise<ToDo> {
+        return await this.repository.updateByID({id,title,description})
+    }
+
+    async deleteByID(id): Promise<GetByID> {
+        return await this.repository.deleteByID({id})
     }
 }
 
