@@ -1,11 +1,11 @@
 import { Config } from '../../types/config'
 
-import { Auth, Register,RegisterSuccess } from "./auth.entity"
+import { Auth, Register,RegisterResult } from "./auth.entity"
 
 
 interface AuthRepository {
     init: (Config: Config)=> void,
-    registerUser: (request: Register) => Promise<RegisterSuccess>
+    registerUser: (request: Register) => Promise<RegisterResult>
 }
 
 class AuthMockRepository implements AuthRepository{
@@ -24,7 +24,7 @@ class AuthMockRepository implements AuthRepository{
         }
     }
 
-    async registerUser(request: Register): Promise<RegisterSuccess> {
+    async registerUser(request: Register): Promise<RegisterResult> {
         const genToken = (Math.random()*1e32).toString(36)
 
 
@@ -37,10 +37,11 @@ class AuthMockRepository implements AuthRepository{
             token: genToken
         });
 
-        const result = new Promise<RegisterSuccess>((resolve) =>{
+        const result = new Promise<RegisterResult>((resolve) =>{
                 resolve({
                     id:`${this.db.length-1}`,
-                    token:genToken
+                    token:genToken,
+                    status: 200
                 })
             }
         );

@@ -1,6 +1,6 @@
 import { Config } from '../../types/config'
 
-import { Auth, RegisterSuccess } from './auth.entity'
+import { Auth, RegisterResult } from './auth.entity'
 import { AuthRepository,AuthMockRepository } from './auth.repository'
 
 class AuthService {
@@ -15,12 +15,22 @@ class AuthService {
         }
     }
 
-    async registerUser(username,email,password,role): Promise<RegisterSuccess> {
+    async registerUser(username,email,password,role): Promise<RegisterResult> {
         const validateEmail = (email) => {
             var re = /\S+@\S+\.\S+/
             return re.test(email);
         }
-        return await this.repository.registerUser({username,email,password,role})
+
+        if (!validateEmail(email)){
+            return({
+                status:400,
+                err:"Bad email format !"
+            })
+        }else{
+            return await this.repository.registerUser({username,email,password,role})
+        }
+             
+        
     }
 }
 

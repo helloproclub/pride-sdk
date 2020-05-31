@@ -14,13 +14,15 @@ type Register = {
     role?:number,
 }
 
-type RegisterSuccess = {
-    id: string,
-    token: string
+type RegisterResult = {
+    id?: string,
+    token?: string,
+    status: number,
+    err?: string
 }
 
 export {
     Auth,
     Register,
-    RegisterSuccess
+    RegisterResult
 }
