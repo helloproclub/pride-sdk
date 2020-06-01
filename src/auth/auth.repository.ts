@@ -1,16 +1,15 @@
 import { Config } from '../../types/config'
 
-import { User, RegisterRequest,AuthResponse, LoginRequest } from "./auth.entity"
+import { Auth, Register,RegisterResult } from "./auth.entity"
 
 
 interface AuthRepository {
     init: (Config: Config)=> void,
-    registerUser: (request: RegisterRequest) => Promise<AuthResponse>
-    loginUser: (request: LoginRequest) => Promise<AuthResponse>
+    registerUser: (request: Register) => Promise<RegisterResult>
 }
 
 class AuthMockRepository implements AuthRepository{
-    private db: User[] = []
+    private db: Auth[] = []
 
     init(config: Config): void {
         for(let i: number = 0; i < 3; i++) {
@@ -25,8 +24,9 @@ class AuthMockRepository implements AuthRepository{
         }
     }
 
-    async registerUser(request: RegisterRequest): Promise<AuthResponse> {
+    async registerUser(request: Register): Promise<RegisterResult> {
         const genToken = (Math.random()*1e32).toString(36)
+
 
         this.db.push({
             id: `${this.db.length}`,
@@ -37,7 +37,7 @@ class AuthMockRepository implements AuthRepository{
             token: genToken
         });
 
-        const result = new Promise<AuthResponse>((resolve) =>{
+        const result = new Promise<RegisterResult>((resolve) =>{
                 resolve({
                     id:`${this.db.length-1}`,
                     token:genToken,
@@ -47,29 +47,6 @@ class AuthMockRepository implements AuthRepository{
         );
 
         return result    
-
-    }
-
-    async loginUser(request: LoginRequest): Promise<AuthResponse> {
-        const data = this.db.find(data => data.username == request.username && data.password == request.password )
-
-        if(data){
-            return new Promise<AuthResponse>((resolve) =>{
-                resolve({
-                    id:data.id,
-                    token:data.token,
-                    role:data.role,
-                    status: 200
-                })
-            });
-        }else{
-            return new Promise<AuthResponse>((resolve) =>{
-                resolve({
-                    err:"Username or password is wrong!",
-                    status: 400
-                })
-            });
-        }    
 
     }
 }
