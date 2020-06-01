@@ -1,6 +1,6 @@
 import { Config } from '../../types/config'
 
-import { User, AuthResponse } from './auth.entity'
+import { Auth, RegisterResult } from './auth.entity'
 import { AuthRepository,AuthMockRepository } from './auth.repository'
 
 class AuthService {
@@ -15,7 +15,7 @@ class AuthService {
         }
     }
 
-    async registerUser(username,email,password,role): Promise<AuthResponse> {
+    async registerUser(username,email,password,role): Promise<RegisterResult> {
         const validateEmail = (email) => {
             var re = /\S+@\S+\.\S+/
             return re.test(email);
@@ -28,11 +28,9 @@ class AuthService {
             })
         }else{
             return await this.repository.registerUser({username,email,password,role})
-        }  
-    }
-
-    async loginUser(username, password): Promise<AuthResponse> {
-        return await this.repository.loginUser({username,password})
+        }
+             
+        
     }
 }
 
