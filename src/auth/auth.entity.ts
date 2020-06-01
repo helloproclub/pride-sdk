@@ -1,4 +1,4 @@
-type Auth = {
+type User = {
     id:string,
     username: string,
     email: string,
@@ -7,22 +7,29 @@ type Auth = {
     token:string
 }
 
-type Register = {
+type RegisterRequest = {
     username: string,
     email: string,
     password:string,
     role?:number,
 }
 
-type RegisterResult = {
+type AuthResponse = {
     id?: string,
     token?: string,
     status: number,
+    role?:number
     err?: string
 }
 
+type LoginRequest = {
+    username: string,
+    password: string
+}
+
 export {
-    Auth,
-    Register,
-    RegisterResult
+    User,
+    RegisterRequest,
+    AuthResponse,
+    LoginRequest
 }

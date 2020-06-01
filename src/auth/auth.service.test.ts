@@ -34,6 +34,29 @@ test("register user not success", async () => {
     expect(registerFail.token).toBeUndefined()
 })
 
+test("login must success", async () => {
+    // given
+    const username = "sometitle"
+    const password = "w"
+
+    // when
+    const login = await service.loginUser(username,password)
+
+    // then
+    expect(login.id).toEqual("3")
+    expect(login.status).toEqual(200)
+})
 
 
+test("login must fail", async () => {
+    // given
+    const username = "s2ometitle"
+    const password = "w"
 
+    // when
+    const login = await service.loginUser(username,password)
+
+    // then
+    expect(login.id).toBeUndefined()
+    expect(login.status).toEqual(400)
+})
